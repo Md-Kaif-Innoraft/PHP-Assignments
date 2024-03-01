@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment 4</title>
+    <title>Assignment 5</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,7 +14,7 @@
 
     // Creating variables to store info
     $fnameErr = $lnameErr = $num = "";
-    $fname = $lname =  $num_Err = "";
+    $fname = $lname = $num_Err = $email_success = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["fname"])) {
             $fnameErr = "* First Name is required";
@@ -35,19 +35,33 @@
             }
         }
 
-        if (empty($_POST['number'])){
+        if (empty($_POST['number'])) {
             $numErr = "* Phone number is requited.";
         } else {
             $num = $_POST['number'];
-            if(!preg_match("/[0-9]/" , $num)){
+            if (!preg_match("/[0-9]/", $num)) {
                 $numErr = "* Only numbers are allowed.";
-            } else if (strlen($num)<10){
+            } else if (strlen($num) < 10) {
                 $numErr = "* Please Enter 10 digit number";
-            } 
-            else{
+            } else {
                 $num = "+91 {$num}";
             }
+
+
         }
+
+        if (empty($_POST['email'])) {
+            $emailErr = "* Email is required";
+        } else {
+            $email = check_input($_POST['email']);
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $email = "";
+            $emailErr = "* Invalid email format";
+            } else{
+                $email_success = "email validated successfully.";
+            }
+        } 
+
 
         if (!empty($_FILES['image']['name'])) {
             $img_temp_name = $_FILES['image']['tmp_name'];
@@ -105,7 +119,7 @@
     <div class="container">
         <div class="box">
             <!-- form starts here -->
-            <h2 class="text-center">PHP Assignment 4</h2><br><br>
+            <h2 class="text-center">PHP Assignment 5</h2><br><br>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
                 enctype="multipart/form-data">
                 <label for="fname"><span class="error">* </span> First Name : </label> <br>
@@ -118,10 +132,18 @@
                 <span class="error">
                     <?php echo "$lnameErr <br><br>"; ?>
                 </span>
-                <label for="number"> Phone number : </label> <br>
+                <label for="number"><span class="error">* </span> Phone number : </label> <br>
                 <input type="text" id="number" name="number"> <br>
                 <span class="error">
                     <?php echo "$numErr <br> <br>"; ?>
+                </span>
+
+                <label for="email"><span class="error">* </span> Email :  <span class="success">
+                    <?php echo " $email_success"; ?>
+                </span></label> <br>
+                <input type="text" id="email" name="email"> <br>
+                <span class="error">
+                    <?php echo "$emailErr <br> <br>"; ?>
                 </span>
 
                 <label for="sub">Subjects and Marks : ( Format: English|80 )</label>
@@ -144,6 +166,7 @@
                 if (!(empty($fname) || empty($lname))) {
                     echo "<p>Hello, {$user->get_Fname()} {$user->get_Lname()} .<br> <br></p>";
                     echo "Your Phone Number is: $num <br><br>";
+                    echo "Your Email is: $email <br><br>";
                     if (!empty($img_name)) {
                         echo "<img src = 'uploads/$img_name' height= 250px >";
                         echo "<br>";
