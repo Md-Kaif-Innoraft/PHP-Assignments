@@ -1,7 +1,10 @@
 <?php
+ 
+//including autoload.php
 require_once('./vendor/autoload.php');
 use Fpdf\Fpdf;
 
+//check if form is submitted
 if (!empty($_POST['submit'])) {
 
     $fname = $_POST["fname"];
@@ -15,17 +18,24 @@ if (!empty($_POST['submit'])) {
         move_uploaded_file($img_temp_name, "uploads/$img_name");
     }
 
-
+   //full name from first name and last name
     $fullname = $fname . " " . $lname;
-    $pdf = new Fpdf();
 
+    //create new object from Fpdf 
+    $pdf = new Fpdf();
+ 
+    //creating a new page 
     $pdf->AddPage();
+    
+    //set font of the page
     $pdf->SetFont("Arial", "", 12);
 
+    //display image on pdf
     if (!empty($img_name)) {
         $pdf->Image("uploads/$img_name", 150, 25, 50);
     }
 
+    //defining cells of pdf
     $pdf->Cell(0, 14, "Registration Details", 1, 1, 'C');
 
     $pdf->Cell(40, 17, "Full Name: ", 1, 0);
@@ -44,7 +54,10 @@ if (!empty($_POST['submit'])) {
     $pdf->cell(85, 14, "Marks", 1, 1, 'C');
 
     $marks_arr = explode("\n", $_POST["sub"]);
-    $i =0;
+    
+    $i =0; 
+
+    //display marks on pdf 
     foreach ($marks_arr as $line) {
         $i++;
         $parts = explode("|", $line);
@@ -54,6 +67,8 @@ if (!empty($_POST['submit'])) {
         $pdf->cell(85, 14, $subject, 1, 0, 'C');
         $pdf->cell(85, 14, $marks, 1, 1, 'C');
     }
+
+    //output as pdf
     
     $pdf->Output();
 }
