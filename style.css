@@ -12,16 +12,13 @@
     text-align: center;
 }
 
+body{
+    background: #BDB7B4;
+}
  /* Container for the same alingment */
 
 .container{
-    /* background-image: url(./bg.jpg); */
-    background: #BDB7B4;
     padding: 20px;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    min-height: 100vh;
     color: white;
     
 }
