@@ -8,7 +8,10 @@
     
 }
 
-  
+body{
+    background: #BDB7B4;
+}
+
 .text-center{
     text-align: center;
 }
@@ -16,8 +19,6 @@
  /* Container for the same alingment */
 
 .container{
-    background: #BDB7B4;
-    min-height: 100vh;
     color: white;
     padding-top: 30px;
 }
@@ -63,4 +64,5 @@ input:disabled{
 
 .btn:hover{
     background: rgb(5, 155, 5);
+    cursor: pointer;
 }
