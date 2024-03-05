@@ -14,16 +14,15 @@
 
  /* Container for the same alingment */
 
-.container{
-    /* background-image: url(./bg.jpg); */
+ body{
     background: #BDB7B4;
+ }
+.container{
     padding: 20px;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh;
     color: white;
-    
 }
 
 /* box to contain form */
