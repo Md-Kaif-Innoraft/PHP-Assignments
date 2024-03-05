@@ -66,14 +66,14 @@
         $user = new User($fname, $lname);
 
     }
-    
+
     ?>
 
     <div class="container">
         <div class="box">
 
             <!-- form starts here -->
-            <h2 class="text-center">PHP Assignment 1</h2><br><br>
+            <h2 class="text-center">PHP Assignment 2</h2><br><br>
 
             <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
 
