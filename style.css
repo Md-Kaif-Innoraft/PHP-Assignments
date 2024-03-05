@@ -12,16 +12,13 @@
     text-align: center;
 }
 
+body{
+    background: #BDB7B4;
+}
  /* Container for the same alingment */
 
 .container{
-    /* background-image: url(./bg.jpg); */
-    background: #BDB7B4;
     padding: 20px;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    min-height: 100vh;
     color: white;
     
 }
@@ -31,7 +28,7 @@
 .box{
     margin: auto;
     background: #22303B;
-    width: 500px;
+    width: 400px;
     border-radius: 10px;
     border: 5px solid white;
     padding: 30px;
@@ -86,7 +83,4 @@ input[type="file"]{
     border-collapse: collapse;
     width: 100%;
     text-align: center;
-}
-.success{
-    color: green;
 }
