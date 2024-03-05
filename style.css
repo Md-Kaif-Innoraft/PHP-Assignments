@@ -16,10 +16,7 @@
  /* Container for the same alingment */
 
 .container{
-    background-image: url(./bg.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: #BDB7B4;
     min-height: 100vh;
     color: white;
     padding-top: 30px;
@@ -31,6 +28,7 @@
     margin: 0 auto;
     width: 400px;
     border-radius: 10px;
+    background: #22303B;
     border: 5px solid white;
     padding: 30px;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);

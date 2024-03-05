@@ -15,38 +15,42 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        $fnameErr = $lnameErr = "";
-        $fullnameError = "* Invalid Input";
+        $fullnameError = "* Invalid Input, You can't enter any value in Full Name.";
 
-        /*  function to Check user input data. */
-        function check_input($data) {
+        /*  Function to remove extra spaces, backslashes and convert special characters to HTML entites form user input data. */
+        function checkInput($data) {
             //Removes extra spaces from the begning and end.
             $data = trim($data);
-            // Removes backslashes 
+            // Removes backslashes. 
             $data = stripslashes($data);
-            // convert special characters to HTML entities
+            // convert special characters to HTML entities.
             $data = htmlspecialchars($data);
             return $data;
         }
         
-        /* Validating user inputs */
+        /* Validating user inputs. */
         function validateName($name, &$error, $fieldName) {
             if (empty($name)) {
                 $error = "* $fieldName Name is required";
                 return "";
             } 
             else {
-                $name = check_input($name);
+                $name = checkInput($name);
                 if (!preg_match("/^[a-zA-Z-\s' ]*$/", $name)) {
                     $error = "* Only letters and white space allowed";
                     return "";
                 } 
+                else if (empty($name)) {
+                    $error = "* Empty, Please enter valid $fieldName Name.";
+                    return "";
+                }
                 else {
                     return $name;
                 }
             }
         }
 
+        // Calling ValidatName function to validate name and store in variable,
         $fname = validateName($_POST["fname"], $fnameErr, "First");
         $lname = validateName($_POST["lname"], $lnameErr, "Last");
         
@@ -56,6 +60,7 @@
 
     <div class="container">
         <div class="box">
+
             <!-- form starts here -->
             <h2 class="text-center">PHP Assignment 1</h2><br><br>
 
@@ -76,11 +81,8 @@
                 <button class="btn">Submit</button> <br> <br> <br>
 
                 <label for="full_name">Full Name:</label> <br>
-                <input type="text" id="fullName" name="fullName" disabled value="<?php if (isset($fname) && isset($lname)) {
+                <input type = "text" id = "fullName" name = "fullName" disabled value = "<?php if (!empty($fname) && !empty($lname)) {
                     echo "$fname $lname";
-                }
-                else{
-                    echo "";
                 } ?>">
                 <span class="error">
                     <?php if(!empty($_POST['fullName'])){
@@ -91,14 +93,14 @@
                 <br><br>
             </form>
             <!-- form ends here -->
-
-            <!-- print full name -->
-                    
+            
+            <!-- Printing full name with greeting. -->
             <?php
-            if (isset($fname) && isset($lname)) {
-                echo "<p>Hello, $fname $lname .</p>";
-            }
+            if (!empty($fname) && !empty($lname)) { ?>
+                <p>Hello, <?php echo "$fname $lname"; ?>.</p>
+            <?php }
             ?>
+
         </div>
     </div>
 </body>
