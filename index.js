@@ -1,5 +1,6 @@
 const regex = /^[a-zA-Z ]+$/;
 
+/* Function to validate user inputs fields */
 function validateInputs(inputId, errorId, fieldName, maxLength){
  
     var input = document.getElementById(inputId).value.trim();
@@ -18,6 +19,7 @@ function validateInputs(inputId, errorId, fieldName, maxLength){
     return true;
 }
 
+/* Validating user inputs on client side. */
 function validate(){
 
     var fnameValid = validateInputs("fname", "ferror", "First Name", 20);

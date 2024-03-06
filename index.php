@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         return $data;
     }
     
-    /* Validating user inputs. */
+    /* Checking user inputs. */
     function validateName($name, &$error, $fieldName) {
         if (empty($name)) {
             $error = "* $fieldName Name is required";
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Calling ValidatName function to validate name and store in variable,
+    // Calling ValidatName function to validate name and store in variable.
     $fname = validateName($_POST["fname"], $fnameErr, "First");
     $lname = validateName($_POST["lname"], $lnameErr, "Last");
 
