@@ -52,7 +52,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //Checking if first name or last name is not empty.
     if (!empty($fname) && !empty($lname)) {
-    $fullName = "$fname $lname";
+    //Creating an object .
+    $user = new User($fname, $lname);
+    $fullName = $user->getFname().' '.$user->getLname();
     $message = "Hello $fullName.";
     }
 
@@ -60,10 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(!empty($_POST['fullName'])){
         $fullnameError = "* Invalid Input, You can't enter any value in Full Name.";
     }
-
-    //Creating an object .
-    $user = new User($fname, $lname);
-
 }
 ?>
 
