@@ -12,12 +12,12 @@ class User
         $this->lname = $lname;
     }
 
-    function get_Fname()
+    function getFname()
     {
         return $this->fname;
     }
 
-    function get_Lname()
+    function getLname()
     {
         return $this->lname;
     }
