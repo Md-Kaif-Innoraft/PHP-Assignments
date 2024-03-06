@@ -66,6 +66,7 @@ input:disabled{
 
 .btn:hover{
     background: rgb(5, 155, 5);
+    cursor: pointer;
 }
  
 
