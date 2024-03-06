@@ -1,6 +1,6 @@
 <?php
  
-//including autoload.php
+//Including autoload.php .
 require_once('./vendor/autoload.php');
 use Fpdf\Fpdf;
 
@@ -18,24 +18,24 @@ if (!empty($_POST['submit'])) {
         move_uploaded_file($img_temp_name, "uploads/$img_name");
     }
 
-   //full name from first name and last name
+   //Full name from first name and last name.
     $fullname = $fname . " " . $lname;
 
-    //create new object from Fpdf 
+    //Create new object from Fpdf .
     $pdf = new Fpdf();
  
-    //creating a new page 
+    //Creating a new page. 
     $pdf->AddPage();
     
-    //set font of the page
+    //Set font of the page.
     $pdf->SetFont("Arial", "", 12);
 
-    //display image on pdf
+    //Display image on pdf.
     if (!empty($img_name)) {
         $pdf->Image("uploads/$img_name", 150, 25, 50);
     }
 
-    //defining cells of pdf
+    //Creating cells of pdf.
     $pdf->Cell(0, 14, "Registration Details", 1, 1, 'C');
 
     $pdf->Cell(40, 17, "Full Name: ", 1, 0);
@@ -47,28 +47,48 @@ if (!empty($_POST['submit'])) {
     $pdf->Cell(40, 17, "Phone Number: ", 1, 0);
     $pdf->Cell(98, 17, $num, 1, 1);
 
+    $marks_arr = explode("\n", $_POST["sub"]);
+
+    //Checking if Marks are entered or not.
+    if(!empty($_POST["sub"])){
     $pdf->Cell(0, 14, "Marks", 1, 1, 'C');
     
     $pdf->cell(20, 14, "SNo.", 1, 0, 'C');
     $pdf->cell(85, 14, "Subject", 1, 0, 'C');
     $pdf->cell(85, 14, "Marks", 1, 1, 'C');
 
-    $marks_arr = explode("\n", $_POST["sub"]);
     
     $i =0; 
 
-    //display marks on pdf 
+    //Display marks on pdf .
     foreach ($marks_arr as $line) {
         $i++;
         $parts = explode("|", $line);
-        $subject = trim($parts[0]);
-        $marks = trim($parts[1]);
-        $pdf->cell(20, 14, $i, 1, 0, 'C');
-        $pdf->cell(85, 14, $subject, 1, 0, 'C');
-        $pdf->cell(85, 14, $marks, 1, 1, 'C');
+        if(count($parts)==2){
+            $subject = trim($parts[0]);
+            $marks = trim($parts[1]);
+            if(is_numeric($parts[1]) && !is_numeric($parts[0])){
+                $pdf->cell(20, 14, $i, 1, 0, 'C');
+                $pdf->cell(85, 14, $subject, 1, 0, 'C');
+                $pdf->cell(85, 14, $marks, 1, 1, 'C');
+            }
+            else if(is_numeric($parts[0]) && !is_numeric($parts[1])){
+                $pdf->cell(20, 14, $i, 1, 0, 'C');
+                $pdf->cell(85, 14, $marks, 1, 0, 'C');
+                $pdf->cell(85, 14, $subject, 1, 1, 'C');
+            }
+            else{
+                $pdf->Cell(0, 14, "Inavalid Marks Entered.", 1, 1, 'C');
+            }
+       
+        }
+        else{
+            
+        }
+    }
     }
 
-    //output as pdf
+    //Output as pdf.
     
     $pdf->Output();
 }
