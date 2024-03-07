@@ -170,7 +170,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <label for="sub">Subjects and Marks : ( Format: English|80 )</label>
                 <textarea name="sub" id="sub" rows="3"></textarea>
-                <span class="error">
+                <span class="error" id = "serror" >
                     <?php echo $tableErrMsg; ?><br><br>
                 </span>
 

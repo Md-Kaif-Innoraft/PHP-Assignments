@@ -40,22 +40,36 @@ function validateNum(inputId, errorId, fieldName, maxLength, regex){
     return true;
 }
 
-function validateMarks(inputId, errorId){
+function validateMarks(inputId, errorId) {
     var input = document.getElementById(inputId).value;
     var error = document.getElementById(errorId);
     var marksArray = input.split("\n");
-    if(document.getElementById(inputId).value.length == 0){
+    
+    if (document.getElementById(inputId).value.trim() === "") {
         error.innerHTML = "* Invalid Marks Entered.<br>";
         return false;
     }
-    for (var i = 0; i< marksArray.length; i++){
+
+    var isValid = false;
+
+    for (var i = 0; i < marksArray.length; i++) {
         var marks = marksArray[i].split("|");
-        if(marks.length!=2 || marks[0] === "" || marks[1] === "" || (!isNaN(marks[0]) && !isNaN(marks[1]))){
+        if (marks.length !== 2 || marks[0].trim() === "" || marks[1].trim() === "" || (!isNaN(marks[0]) && !isNaN(marks[1]))) {
             error.innerHTML = "* Invalid Marks Entered.<br>";
             return false;
         }
-       return true;
+        // Set isValid to true if at least one element is a number
+        if (!isNaN(marks[0]) || !isNaN(marks[1])) {
+            isValid = true;
+        }
     }
+
+    if (!isValid) {
+        error.innerHTML = "* At least one mark should be a non-empty string representing a number.<br>";
+        return false;
+    }
+
+    return true;
 }
 
 /* Validating user inputs on client side. */
