@@ -83,7 +83,7 @@ if (!empty($_POST['submit'])) {
        
         }
         else{
-            
+            $pdf->Cell(0, 14, "Inavalid Marks Entered.", 1, 1, 'C');
         }
     }
     }
