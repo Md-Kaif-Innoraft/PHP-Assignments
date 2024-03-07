@@ -1,4 +1,3 @@
-<!-- PHP Logic starts here to fetch info  -->
 <?php
 
 /* Include the User class file. */
@@ -89,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Splitting subject and marks pair
             $marks = explode("|", $mark);
             
-            if(count($marksArray) == 2){
+            if(count($marks) == 2){
             // Adding table rows to the HTML string.
             $table .= "<tr>";
             if(is_numeric($marks[0])){
@@ -164,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </span>
 
                 <label for="number"> Phone number : </label> <br>
-                <input type="text" id="number" maxlength = "10" name="number" value="<?php echo $_POST['number']; ?>" pattern = "[0-9]*"> <br>
+                <input type="text" id="number" maxlength = "10" name="number" required value="<?php echo $_POST['number']; ?>" pattern = "[0-9]+$"> <br>
                 <span class="error" id = "nerror">
                     <?php echo "$numErr <br> <br>"; ?>
                 </span>
