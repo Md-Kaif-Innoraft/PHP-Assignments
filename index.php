@@ -49,7 +49,7 @@
             <h2 class="text-center">Login</h2><br><br>
 
             <form id="form" method="post"
-                action="index.php">
+                action= "<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                 <label for="username"><span class="error">* </span> Username : </label> <br>
                 <input type="text" name="username" id="username" required maxlength="20"
                     value="<?php echo $_POST['username']; ?>" pattern="[a-zA-Z ]*">
@@ -58,7 +58,7 @@
                 <input type="password" id="password" name="password" required maxlength="20"
                     value="<?php echo $_POST['password']; ?>" pattern="[a-zA-Z 0-9]*"> <br>
 
-                <a href="logout.php"><button class="btn">Submit</button></a> 
+                <a href="logout.php"><button class="btn">Login</button></a> 
                 <span class = "error"> <?php echo $loginErr ; ?> </span>
             </form>
 

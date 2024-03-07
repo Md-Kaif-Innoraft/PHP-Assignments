@@ -35,7 +35,7 @@
         <h2 class="text-center">Hello, <?php echo $_SESSION['username']; ?> . </h2><br><br>
         <?php include ('q'.$question_number.'php'); ?>
         <br>
-        <a href="logout.php"><button class="btn">Submit</button></a>
+        <a href="logout.php"><button class="btn">Logout</button></a>
         </div>
     </div>
 </body>
