@@ -1,4 +1,3 @@
-<!-- PHP Logic starts here to fetch info  -->
 <?php
 
 /* Include the User class file. */
