@@ -1,5 +1,3 @@
-<!-- PHP Logic starts here to fetch info  -->
-
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
