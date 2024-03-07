@@ -1,4 +1,3 @@
-<!-- PHP Logic starts here to fetch info  -->
 <?php
 
 /* Include the User class file. */
@@ -74,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Splitting subject and marks pair
             $marks = explode("|", $mark);
             
-            if(count($marksArray) == 2){
+            if(count($marks) == 2){
             // Adding table rows to the HTML string.
             $table .= "<tr>";
             if(is_numeric($marks[0])){
@@ -149,8 +148,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </span>
 
                 <label for="sub">Subjects and Marks : ( Format: English|80 )</label>
-                <textarea name="sub" id="sub" rows="3"></textarea>
-                <span class="error">
+                <textarea name="sub" id="sub" rows="3" required></textarea>
+                <span class="error" id = "serror">
                     <?php echo $tableErrMsg; ?><br><br>
                 </span>
 

@@ -21,12 +21,32 @@ function validateInputs(inputId, errorId, fieldName, maxLength){
     return true;
 }
 
+function validateMarks(inputId, errorId){
+    var input = document.getElementById(inputId).value;
+    var error = document.getElementById(errorId);
+    var marksArray = input.split("\n");
+    if(document.getElementById(inputId).value.length == 0){
+        error.innerHTML = "* Invalid Marks Entered.<br>";
+        return false;
+    }
+    for (var i = 0; i< marksArray.length; i++){
+        var marks = marksArray[i].split("|");
+        if(marks.length!=2 || marks[0] === "" || marks[1] === "" || (!isNaN(marks[0]) && !isNaN(marks[1]))){
+            error.innerHTML = "* Invalid Marks Entered.<br>";
+            return false;
+        }
+       return true;
+    }
+}
+
 /* Validating user inputs on client side. */
 function validate(){
 
     var fnameValid = validateInputs("fname", "ferror", "First Name", 20);
     var lnameValid = validateInputs("lname", "lerror", "Last Name", 20);
+    var validMarks = validateMarks("sub", "serror");
+
     
-    return fnameValid && lnameValid;
+    return fnameValid && lnameValid && validMarks; 
 
 }
