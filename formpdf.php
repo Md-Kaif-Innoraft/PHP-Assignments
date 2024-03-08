@@ -11,6 +11,7 @@ if (!empty($_POST['submit'])) {
     $lname = $_POST["lname"];
     $email = $_POST['email'];
     $num = $_POST['number'];
+    $num = "+91 ".$num;
 
     if (!empty($_FILES['image']['name'])) {
         $img_temp_name = $_FILES['image']['tmp_name'];
