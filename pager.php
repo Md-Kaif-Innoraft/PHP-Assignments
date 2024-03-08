@@ -10,12 +10,12 @@
     }
     
     // Checking for url rewriting and directing on the question page.
-    if (isset($_GET['q']) && is_numeric($_GET['q'])) {
+    if (isset($_GET['q']) && is_numeric($_GET['q']) && ($_GET['q']>=1 && $_GET['q']<=6)) {
       $question_number = $_GET['q'];
     }
     else {
-      // Default to question 1 if no question number is provided
-      $question_number = 1;
+        // Default to question 1 if no question number is provided
+        $question_number = 1;
   }
 
 ?>

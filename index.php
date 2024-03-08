@@ -52,7 +52,7 @@
                 action= "<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                 <label for="username"><span class="error">* </span> Username : </label> <br>
                 <input type="text" name="username" id="username" required maxlength="20"
-                    value="<?php echo $_POST['username']; ?>" pattern="[a-zA-Z ]*">
+                    value="<?php echo $_POST['username']; ?>" pattern="[a-zA-Z 0-9]*">
               
                 <label for="password"> <span class="error">* </span> Password : </label> <br>
                 <input type="password" id="password" name="password" required maxlength="20"
