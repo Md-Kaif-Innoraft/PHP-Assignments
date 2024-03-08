@@ -11,10 +11,12 @@ function validateInputs(inputId, errorId, fieldName, maxLength, regex) {
     if (input == "") {
         error.innerHTML = "* " + fieldName + " is required.<br>";
         return false;
-    } else if (!regex.test(input)) {
+    }
+    else if (!regex.test(input)) {
         error.innerHTML = "* Invalid Input " + fieldName + ".<br><br>";
         return false;
-    } else if (input.length >= maxLength) {
+    }
+    else if (input.length >= maxLength) {
         error.innerHTML = "* " + fieldName + " should not contain more than " + maxLength + " characters.<br><br>";
         return false;
     }
@@ -28,7 +30,8 @@ function validateEmail(inputId, errorId, fieldName) {
     if (input == "") {
         error.innerHTML = "* " + fieldName + " is required.<br>";
         return false;
-    } else if (!emailRegex.test(input)) { // Using emailRegex for email validation
+    } 
+    else if (!emailRegex.test(input)) { // Using emaiasdfdsalk@gmail.comlRegex for email validation
         error.innerHTML = "* Invalid " + fieldName + ". Please enter a valid email address.<br><br>";
         return false;
     }
@@ -41,10 +44,12 @@ function validateNum(inputId, errorId, fieldName, maxLength, regex) {
     if (input == "") {
         error.innerHTML = "* " + fieldName + " is required.<br>";
         return false;
-    } else if (!regex.test(input)) {
+    } 
+    else if (!regex.test(input)) {
         error.innerHTML = "* Invalid Input " + fieldName + ".<br><br>";
         return false;
-    } else if (input.length != maxLength) {
+    } 
+    else if (input.length != maxLength) {
         error.innerHTML = "* " + fieldName + " should only " + maxLength + " characters.<br><br>";
         return false;
     }
