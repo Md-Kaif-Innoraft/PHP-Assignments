@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Splitting subject and marks pair
             $marks = explode("|", $mark);
             
-            if(strlen($marks) == 2){
+            if(count($marks) == 2){
             // Adding table rows to the HTML string.
             $table .= "<tr>";
             if(is_numeric($marks[0])){
@@ -187,7 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <label for="fname"><span class="error">* </span> First Name : </label> <br>
                 <input type="text" name="fname" id="fname" maxlength="20"
-                    value="<?php echo $_POST['fname']; ?>"  >
+                    value="<?php echo $_POST['fname']; ?>" required pattern = "[a-zA-Z ]*"> 
                 <span class="error" id="ferror"> 
                     <?php echo " $fnameErr <br><br>"; ?>
                 </span>
@@ -200,7 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </span>
 
                 <label for="number"> Phone number : </label> <br>
-                <input type="text" id="number" maxlength = "10" name="number" value="<?php echo $_POST['number']; ?>" pattern = "[0-9]*"> <br>
+                <input type="text" id="number" maxlength = "10" name="number" value="<?php echo $_POST['number']; ?>" required pattern = "[0-9]*"> <br>
                 <span class="error" id = "nerror">
                     <?php echo "$numErr <br> <br>"; ?>
                 </span>
@@ -209,14 +209,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php 
                     echo "$emailSuccess"; ?>
                 </span></label> <br>
-                <input type="text" id="email" name="email" value="<?php echo $_POST['email']; ?>"> <br>
+                <input type="text" id="email" name="email" value="<?php echo $_POST['email']; ?>" required> <br>
                 <span class="error" id = "emailErr">
                     <?php echo "$emailErr <br> <br>"; ?>
                 </span>
 
                 <label for="sub">Subjects and Marks : ( Format: English|80 )</label>
-                <textarea name="sub" id="sub" rows="3"></textarea>
-                <span class="error">
+                <textarea required name="sub" id="sub" rows="3"></textarea>
+                <span class="error" id = "serror">
                     <?php echo $tableErrMsg; ?><br><br>
                 </span>
 
