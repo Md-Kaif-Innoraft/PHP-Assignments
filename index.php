@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $regex = "/^[a-zA-Z-\s' ]*$/";
     $numRegex = "/^[0-9]+$/";
+    $emailErr = $fnameErr = $lnameErr = $numErr = $emailSuccess = $emailMsg = "";
 
     /* Checking user inputs. */
 
@@ -43,23 +44,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    function validateEmail($email, &$emailErr, &$emailSuccess, &$emailMsg){
+        if (empty($email)) {
+            $emailErr = "* Email is required";
+            return "";
+        } 
+        else {
+            $email = checkInput($email);
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $emailErr = "* Invalid email format.";
+                return "";
+
+            }
+            else {
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, 'https://emailvalidation.abstractapi.com/v1/?api_key=88e808712da846bf889378a04dd4d4f0&email=' . $email);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                $data = curl_exec($ch);
+                curl_close($ch);
+                $data = json_decode($data, true);
+
+                if($data['deliverability'] != "DELIVERABLE" &&  $data['is_disposable_email']['value'] != "false" && $data['is_valid_format']['text'] != "true"){
+                    $emailErr = "* Invalid email.";
+                    return "";
+                }
+                $emailMsg = "Your email id is: $email";
+                $emailSuccess = "email validated successfully.";
+                return $email;
+
+            }
+        } 
+    
+    }
+
     // Calling ValidatName function to validate name and store in variable.
     $fname = validate($_POST["fname"], $regex, $fnameErr, "First Name");
     $lname = validate($_POST["lname"], $regex, $lnameErr, "Last Name");
     $num = validate($_POST["number"], $numRegex, $numErr, "Phone Number");
-
-    if (empty($_POST['email'])) {
-        $emailErr = "* Email is required";
-    } else {
-        $email = checkInput($_POST['email']);
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $email = "";
-        $emailErr = "* Invalid email format";
-        } else{
-            $email_success = "email validated successfully.";
-        }
-    } 
-
+    $email = validateEmail ($_POST["email"], $emailErr , $emailSuccess, $emailMsg);
+   
     $numMsg = "";
 
     if (!empty($num) && strlen($num) == 10) {
@@ -159,12 +183,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <!-- form starts here -->
             <h2 class="text-center">PHP Assignment 5</h2><br><br>
 
-            <form id="form" onsubmit = "return validate()" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
+            <form id="form"  onsubmit = "return validate()" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
 
                 <label for="fname"><span class="error">* </span> First Name : </label> <br>
                 <input type="text" name="fname" id="fname" maxlength="20"
-                    value="<?php echo $_POST['fname']; ?>" required pattern = "[a-zA-Z ]*" >
-                <span class="error" id="ferror">
+                    value="<?php echo $_POST['fname']; ?>"  >
+                <span class="error" id="ferror"> 
                     <?php echo " $fnameErr <br><br>"; ?>
                 </span>
 
@@ -182,10 +206,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </span>
 
                 <label for="email"><span class="error">* </span> Email :  <span class="success">
-                    <?php echo " $email_success"; ?>
+                    <?php 
+                    echo "$emailSuccess"; ?>
                 </span></label> <br>
-                <input type="text" id="email" name="email"> <br>
-                <span class="error">
+                <input type="text" id="email" name="email" value="<?php echo $_POST['email']; ?>"> <br>
+                <span class="error" id = "emailErr">
                     <?php echo "$emailErr <br> <br>"; ?>
                 </span>
 
@@ -196,11 +221,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </span>
 
                 <label for="image">Image :</label> <br>
-                <input class="file" type="file" name="image" accept="image/png, image/gif, image/jpeg"><br><br>
+                <input class="file" type="file" id = "image"  name="image" accept="image/png, image/gif, image/jpeg"><br><br>
 
                 <button class="btn">Submit</button> <br> <br> <br>
 
-                <label for="full_name">Full Name:</label> <br>
+                <label for="fullName">Full Name:</label> <br>
                 <input type="text" id="fullName" name="fullName" disabled value="<?php echo $fullName; ?>">
                 <span class="error">
                     <?php echo $fullnameError; ?>
@@ -215,7 +240,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php
                 if (isset($fullName)) { 
                     echo $message; ?> <br>
-                    <?php echo $numMsg; ?>
+                    <?php echo $numMsg; ?> <br>
+                    <?php echo $emailMsg ; ?> 
                     <br> <br>
                    <?php if (!empty($img_name)) { ?>
                     <img src = 'uploads/<?php echo $img_name; ?>' height= 250px > <br>
