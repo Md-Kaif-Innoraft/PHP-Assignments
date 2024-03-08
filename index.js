@@ -79,7 +79,7 @@ function validate(){
     var lnameValid = validateInputs("lname", "lerror", "Last Name", 20, regex);
     var numberValid = validateNum("number", "nerror", "Phone Number", 10, numberRegex) ;
     if(document.getElementById("number").value.trim().length != 10){
-        number = false;
+        numberValid = false;
         nerror.innerHTML = "*  Phone Number should contain exactly 10 characters.<br><br>";
     }
     var validMarks = validateMarks("sub", "serror");
