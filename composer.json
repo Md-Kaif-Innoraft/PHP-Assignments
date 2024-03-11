@@ -1,0 +1,6 @@
+{
+    "name": "phpassignment/sendmail",
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    }
+}
