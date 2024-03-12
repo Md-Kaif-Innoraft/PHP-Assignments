@@ -26,9 +26,11 @@
 .service-title{
     color: #EA7512;
     font-size: 45px;
+    text-transform: uppercase;
 }
 
 .service-secondary-title{
+    text-transform: uppercase;
     color: #4B5561;
     font-size: 45px;
 }
