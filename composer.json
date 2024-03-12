@@ -1,0 +1,12 @@
+{
+    "name": "phpadvanced/api",
+    "authors": [
+        {
+            "name": "Md-Kaif-Innoraft",
+            "email": "kaif.ansari@innoraft.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.8"
+    }
+}
