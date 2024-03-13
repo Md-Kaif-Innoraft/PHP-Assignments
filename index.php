@@ -1,11 +1,17 @@
 <?php
-
+    session_start();
     /* Set user name. */
     $validUser = "kaif";
     /* Set Password. */
     $validPass = "kaif";
     /* Variable for error if user fills wrong username or password. */
     $loginErr = "";
+
+    //Checking if the user is loggedin or not if user in loggedin redirecting to pager page.
+    if (isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == true) {
+        header("location: pager.php");
+        exit;
+    }
 
     /* Checking form submitted method */
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -16,7 +22,6 @@
 
         // Matching username and password.
         if (($validUser == $username) && ($validPass == $password)) {
-            session_start();
             $_SESSION['loggedIn'] = true;
             $_SESSION['username'] = $username;
             header("location: pager.php");
