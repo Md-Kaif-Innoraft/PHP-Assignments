@@ -1,25 +1,47 @@
 <?php
 
-//creating a class named User.
+/**
+ * Class User
+ *
+ * @var $fname private
+ * Stores first Name of user.
+ * @var $lname private
+ * Stores Last Name of user.
+ */
 class User
 {
     private $fname;
     private $lname;
 
-    function __construct($fname, $lname)
-    {
-        $this->fname = $fname;
-        $this->lname = $lname;
+    /**
+     * Constructer to set instance variables.
+     *
+     * @param string $fname
+     *
+     * @param string $lane
+     */
+
+    function __construct(string $fname, string $lname) {
+      $this->fname = $fname;
+      $this->lname = $lname;
     }
 
-    function getFname()
-    {
-        return $this->fname;
-    }
+    /**
+     * Method to return First name.
+     *
+     * @return $fname type string
+     */
 
-    function getLname()
-    {
-        return $this->lname;
+    function getFname() {
+      return $this->fname;
+    }
+    /**
+     * Method to return Last name.
+     *
+     * @return $lname type string
+     */
+    function getLname() {
+      return $this->lname;
     }
 }
 ?>

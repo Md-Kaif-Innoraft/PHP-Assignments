@@ -5,12 +5,20 @@
 require_once 'user.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    /*  Function to remove extra spaces, backslashes and convert special characters to HTML entites form user input data. */
+    /**
+     * Function to remove extra spaces,
+     * backslashes and convert special characters
+     * to HTML entites form user input data.
+     *
+     *  @param string $data
+     *
+     * @return string $data
+     *
+     */
     function checkInput ($data) {
         //Removes extra spaces from the begning and end.
         $data = trim($data);
-        // Removes backslashes. 
+        // Removes backslashes.
         $data = stripslashes($data);
         // convert special characters to HTML entities.
         $data = htmlspecialchars($data);
@@ -21,34 +29,66 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $numRegex = "/^[0-9]+$/";
     $emailErr = $fnameErr = $lnameErr = $numErr = $emailSuccess = $emailMsg = "";
 
-    /* Checking user inputs. */
+    /**
+     * Checking user inputs.
+     *
+     * @param string $input
+     * Input from user.
+     *
+     * @param string $preg
+     * Regex to match pattern.
+     *
+     * @param &string $error
+     * Address of error @var to update.
+     *
+     * @param string $fieldName
+     * Field name of the input.
+     */
 
     function validate($input, $preg, &$error, $fieldName) {
+        //Checking empty input.
         if (empty($input)) {
             $error = "* $fieldName Name is required";
             return "";
-        } 
+        }
         else {
             $name = checkInput($input);
+            //Checking to Pattern from regex.
             if (!preg_match($preg , $name)) {
                 $error = "* Invalid Input Type.";
                 return "";
-            } 
+            }
+            //Checking empty @var name.
             else if (empty($name)) {
                 $error = "* Empty, Please enter valid $fieldName .";
                 return "";
-            } 
+            }
             else {
                 return $input;
             }
         }
     }
 
-    function validateEmail($email, &$emailErr, &$emailSuccess, &$emailMsg){
+    /**
+     * Function checks email validation.
+     *
+     * @param string $email
+     * Input from user.
+     * @param string $emailErr
+     *
+     * @param string $emailSuccess
+     *
+     * @param string $emailMsg
+     *
+     * @return string $email
+     */
+
+    function validateEmail($email, &$emailErr, &$emailSuccess, &$emailMsg) {
+        //Check empty $email.
         if (empty($email)) {
             $emailErr = "* Email is required";
             return "";
-        } 
+        }
         else {
             $email = checkInput($email);
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -74,8 +114,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 return $email;
 
             }
-        } 
-    
+        }
+
     }
 
     // Calling ValidatName function to validate name and store in variable.
@@ -83,14 +123,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $lname = validate($_POST["lname"], $regex, $lnameErr, "Last Name");
     $num = validate($_POST["number"], $numRegex, $numErr, "Phone Number");
     $email = validateEmail ($_POST["email"], $emailErr , $emailSuccess, $emailMsg);
-   
-    $numMsg = "";
 
+    $numMsg = "";
+    //Checking Phone number is 10 digits or not.
     if (!empty($num) && strlen($num) == 10) {
         $num = "+91 {$num}";
         $numMsg = 'Your Phone Number is: '.$num ;
-    } 
-    else{
+    }
+    else {
         $numErr = "Invalid Phone Number";
     }
 
@@ -119,29 +159,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tableHead = "Marks";
         $table = "<table class = 'table' border = '1' >";
         $table .= "<tr><th>Subject</th><th>Marks</th></tr>";
-        
+
         // Loop through each subject and marks pair.
         foreach ($marksArray as $mark) {
-            // Splitting subject and marks pair
+            // Splitting subject and marks pair.
             $marks = explode("|", $mark);
-            
+
             if(count($marks) == 2){
             // Adding table rows to the HTML string.
             $table .= "<tr>";
-            if(is_numeric($marks[0])){
+            if (is_numeric($marks[0])) {
                 $table .= "<td>$marks[1]</td>";
                 $table .= "<td>$marks[0]</td>";
             }
-            else if(is_numeric($marks[1])){
+            else if (is_numeric($marks[1])) {
                 $table .= "<td>$marks[0]</td>";
                 $table .= "<td>$marks[1]</td>";
             }
-            else{
+            else {
                 $tableErr = true;
             }
             $table .= "</tr>";
         }
-        else{
+        else {
             $tableErr = true;
         }
 
@@ -156,11 +196,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //Checking if full name filed is not filled.
-    if(!empty($_POST['fullName'])){
+    if (!empty($_POST['fullName'])) {
         $fullnameError = "* Invalid Input, You can't enter any value in Full Name.";
     }
 
-    if($tableErr == true){
+    if($tableErr == true) {
         $tableErrMsg = "* Invalid Marks Input.";
     }
 }
@@ -179,16 +219,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <div class="box">
-
             <!-- form starts here -->
             <h2 class="text-center">PHP Assignment 5</h2><br><br>
 
             <form id="form"  onsubmit = "return validate()" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
-
                 <label for="fname"><span class="error">* </span> First Name : </label> <br>
                 <input type="text" name="fname" id="fname" maxlength="20"
-                    value="<?php echo $_POST['fname']; ?>" required pattern = "[a-zA-Z ]*"> 
-                <span class="error" id="ferror"> 
+                    value="<?php echo $_POST['fname']; ?>" required pattern = "[a-zA-Z ]*">
+                <span class="error" id="ferror">
                     <?php echo " $fnameErr <br><br>"; ?>
                 </span>
 
@@ -206,7 +244,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </span>
 
                 <label for="email"><span class="error">* </span> Email :  <span class="success">
-                    <?php 
+                    <?php
                     echo "$emailSuccess"; ?>
                 </span></label> <br>
                 <input type="text" id="email" name="email" value="<?php echo $_POST['email']; ?>" required> <br>
@@ -230,31 +268,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <span class="error">
                     <?php echo $fullnameError; ?>
                 </span>
-
                 <br><br>
             </form>
             <!-- Form ends here. -->
-        
             <!-- Print full name Greeting message and Image. -->
             <div class="img-sec">
                 <?php
-                if (isset($fullName)) { 
+                if (isset($fullName)) {
                     echo $message; ?> <br>
                     <?php echo $numMsg; ?> <br>
-                    <?php echo $emailMsg ; ?> 
+                    <?php echo $emailMsg ; ?>
                     <br> <br>
                    <?php if (!empty($img_name)) { ?>
                     <img src = 'uploads/<?php echo $img_name; ?>' height= 250px > <br>
                     <?php echo $img_name; ?>
                     <br><br>
                     <?php
-                    } 
+                    }
                     echo $table;
-                } 
+                }
                 ?>
             </div>
     </div>
-
     <script src="index.js"></script>
 </body>
 </html>

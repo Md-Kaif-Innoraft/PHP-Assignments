@@ -2,7 +2,7 @@
 
 const regex = /^[a-zA-Z ]+$/;
 const numberRegex = /^[0-9]+$/;
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /* Function to validate user inputs fields */
 function validateInputs(inputId, errorId, fieldName, maxLength, regex) {
@@ -30,7 +30,7 @@ function validateEmail(inputId, errorId, fieldName) {
     if (input == "") {
         error.innerHTML = "* " + fieldName + " is required.<br>";
         return false;
-    } 
+    }
     else if (!emailRegex.test(input)) { // Using emaiasdfdsalk@gmail.comlRegex for email validation
         error.innerHTML = "* Invalid " + fieldName + ". Please enter a valid email address.<br><br>";
         return false;
@@ -44,11 +44,11 @@ function validateNum(inputId, errorId, fieldName, maxLength, regex) {
     if (input == "") {
         error.innerHTML = "* " + fieldName + " is required.<br>";
         return false;
-    } 
+    }
     else if (!regex.test(input)) {
         error.innerHTML = "* Invalid Input " + fieldName + ".<br><br>";
         return false;
-    } 
+    }
     else if (input.length != maxLength) {
         error.innerHTML = "* " + fieldName + " should only " + maxLength + " characters.<br><br>";
         return false;
