@@ -1,7 +1,10 @@
 <?php
-
+    // Including fetchApi file.
     require 'fetchApi.php';
 
+    /**
+     * Class to Fetch data from Api.
+     */
     class Field {
 
         private $title;
@@ -53,7 +56,7 @@
 
         //Calling Api to get JSON Data in Array format.
         $dataArr = (new FetchApi('https://www.innoraft.com/jsonapi/node/services')) -> callApi();
-    
+
         foreach ( $dataArr['data'] as $data) {
            if($data['attributes']['field_secondary_title'] != NULL) {
             $url = 'https://www.innoraft.com';
@@ -77,7 +80,7 @@
             foreach ($iconsCall1['data'] as $icons) {
                 $iconsCall2 = (new FetchApi($icons['relationships']['field_media_image']['links']['related']['href'])) -> callApi();
                 $icon = $url.$iconsCall2['data']['attributes']['uri']['url'];
-                $iconArr[] = $icon; 
+                $iconArr[] = $icon;
             }
             $object = new Field ($title, $image, $iconArr, $service, $alias );
             //Storing object in Array.
