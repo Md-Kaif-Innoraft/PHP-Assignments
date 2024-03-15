@@ -10,7 +10,7 @@
      * backslashes and convert special characters
      * to HTML entites form user input data.
      *
-     *  @param string $data
+     * @param string $data
      *
      * @return string $data
      *

@@ -5,6 +5,7 @@
  *
  * @var string @fname private.
  * Stores first Name of user.
+ *
  * @var string @lname private.
  * Stores Last Name of user.
  */
