@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Class User
+ * Class User.
  *
- * @var $fname private
+ * @var string @fname private.
  * Stores first Name of user.
- * @var $lname private
+ * @var string @lname private.
  * Stores Last Name of user.
  */
 class User
@@ -16,9 +16,9 @@ class User
     /**
      * Constructer to set instance variables.
      *
-     * @param string $fname
+     * @param string @fname.
      *
-     * @param string $lane
+     * @param string @lname.
      */
 
     function __construct(string $fname, string $lname) {
@@ -29,7 +29,7 @@ class User
     /**
      * Method to return First name.
      *
-     * @return $fname type string
+     * @return $fname type string.
      */
 
     function getFname() {
