@@ -24,8 +24,7 @@
       $data = htmlspecialchars($data);
       return $data;
     }
-
-
+    //Regex Pattern.
     $regex = "/^[a-zA-Z-\s' ]*$/";
     $numRegex = "/^[0-9]+$/";
     $emailErr = $fnameErr = $lnameErr = $numErr = $emailSuccess = $emailMsg = "";
