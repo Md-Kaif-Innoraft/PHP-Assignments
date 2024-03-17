@@ -41,3 +41,4 @@ function validate(){
   var lnameValid = validateInputs("lname", "lerror", "Last Name", 20);
   return fnameValid && lnameValid;
 }
+

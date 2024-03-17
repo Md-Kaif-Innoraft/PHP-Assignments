@@ -162,5 +162,10 @@
       }
     }
   }
+  //Creating formValidator object from FormValidator.
+  $formValidator = new FormValidator();
+  //Calling processForm() Method.
+  $formValidator->processForm();
+
 ?>
 

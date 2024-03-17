@@ -1,10 +1,6 @@
 <?php
   //Including formValidator.php file.
   require 'formValidator.php';
-  //Creating formValidator object from FormValidator.
-  $formValidator = new FormValidator();
-  //Calling processForm() Method.
-  $formValidator->processForm();
 ?>
 
 <!DOCTYPE html>
@@ -45,3 +41,4 @@
   <script src="index.js"></script>
 </body>
 </html>
+
