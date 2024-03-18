@@ -1,6 +1,6 @@
 <?php
 
-  require 'fetchApi.php';
+  require 'FetchApi.php';
   // Include Composer's autoloader.
   require_once './vendor/autoload.php';
   use Dotenv\Dotenv;
@@ -8,102 +8,127 @@
    * FormValidator Class to validate form data.
    */
   class FormValidator {
+
     /**
-     * @var string.
+     * @var string $regexAlpha.
      *  Regular expression to check alphabets and space.
      */
     const regexAlpha = "/^[a-zA-Z-\s' ]*$/";
+
     /**
      * @var string.
      *  Regular expression to check Number.
      */
     const regexNum = "/^[0-9]+$/";
+
     /**
-     * @var string @fName.
+     * @var string $fName.
      *  First Name from user input.
      */
     private $fName;
+
     /**
-     * @var string @lName.
+     * @var string $lName.
      *  Last Name from user Input.
      */
     private $lName;
+
     /**
-     * @var string @fullName.
+     * @var string $fullName.
      *  Full Name by adding first name and last name.
      */
     private $fullName;
+
     /**
-     * @var string @fNameErr.
+     * @var string $fNameErr.
      *  It stores first name error.
      */
     private $fNameErr;
+
     /**
-     * @var string @lNameErr.
+     * @var string $lNameErr.
      *  It stores Last name error.
      */
     private $lNameErr;
+
     /**
-     * @var string @message.
+     * @var string $message.
      *  It stores greeting message.
      */
     private $message;
+
     /**
-     * @var string @fullNameErr.
+     * @var string $fullNameErr.
      *  It stores full name error.
      */
     private $fullNameError;
+
     /**
-     * @var string @imgTEmpName.
+     * @var string $imgTEmpName.
      *  It stores Temp File name of image File.
      */
     private $imgTempName;
+
     /**
-     * @var string @imgName.
+     * @var string $imgName.
      *  It stores File name of image File.
      */
     private $imgName;
+
     /**
-     * @var string @numErr.
+     * @var string $numErr.
      *  It stores Phone number error message.
      */
     private $numErr;
+
     /**
-     * @var string @numMSg.
+     * @var string $numMSg.
      *  It stores Phone number message.
      */
     private $numMsg;
+
     /**
-     * @var string @emailErr.
+     * @var string $emailErr.
      *  It stores Email id error message.
      */
     private $emailErr;
+
     /**
-     * @var string @tableErr.
+     * @var string $tableErr.
      *  It stores Marks Table error message.
      */
     private $tableErr;
+
     /**
-     * @var string @emailMsg.
+     * @var string $emailMsg.
      *  It stores Email message upon successful validation of email id.
      */
     private $emailMsg;
+
     /**
-     * @var string @emailSuccess.
+     * @var string $emailSuccess.
      *  It stores Email Success message upon successful validation of email id.
      */
     private $emailSuccess;
+
     /**
-     * @var string @email.
+     * @var string $email.
      *  It stores Email iduse Dotenv\Dotenv; from user input.
      */
     private $email;
+
     /**
-     * @var string @num.
+     * @var string $num.
      *  It stores Phone number from user input.
      */
     private $num;
+
+    /**
+     * @var array $result.
+     *  Array will store the marks and subjects of user.
+     */
     private $result = [];
+
     /**
      * Constructor to set fName, lName, fullName,
      * fNameErr, lNameErr, fullNameErr, message.
@@ -128,6 +153,7 @@
       $this->numMsg = "";
       $this->tableErr = "";
     }
+
     /**
      * Function to return Error in first name.
      *
@@ -137,6 +163,7 @@
     public function getFirstNameErr(): string {
       return $this->fNameErr;
     }
+
     /**
      * Function to return Error in Last name.
      *
@@ -146,6 +173,7 @@
     public function getLastNameErr(): string {
       return $this->lNameErr;
     }
+
     /**
      * Function to return Error in Full name.
      *
@@ -155,6 +183,7 @@
     public function getFullNameError(): string {
       return $this->fullNameError;
     }
+
     /**
      * Function to return Full name.
      *
@@ -164,6 +193,7 @@
     public function getFullName(): string {
       return $this->fullName;
     }
+
     /**
      * Function to return Greeting Message.
      *
@@ -173,6 +203,7 @@
     public function getMessage(): string {
       return $this->message;
     }
+
     /**
      * Function to return Temporary File name of Image file.
      *
@@ -182,6 +213,7 @@
     public function getImgTempName(): string {
       return $this->imgTempName;
     }
+
     /**
      * Function to return File name of Image file.
      *
@@ -191,6 +223,7 @@
     public function getImgName(): string {
       return $this->imgName;
     }
+
     /**
      * Function to return email error message.
      *
@@ -200,6 +233,7 @@
     public function getEmailErr(): string {
       return $this->emailErr;
     }
+
     /**
      * Function to return Number error message.
      *
@@ -209,6 +243,7 @@
     public function getNumErr(): string {
       return $this->numErr;
     }
+
     /**
      * Function to return Email success message upon email validation.
      *
@@ -218,6 +253,7 @@
     public function getEmailSuccess(): string {
       return $this->emailSuccess;
     }
+
     /**
      * Function to return Email message upon email validation.
      *
@@ -227,6 +263,7 @@
     public function getEmailMsg(): string {
       return $this->emailMsg;
     }
+
     /**
      * Function to return MArks Table Error.
      *
@@ -236,6 +273,7 @@
     public function getTableErr(): string {
       return $this->tableErr;
     }
+
     /**
      * Function to return Phone Number.
      *
@@ -245,6 +283,13 @@
     public function getNumMsg(): string {
       return $this->numMsg;
     }
+
+    /**
+     * Function to return Marks and subects Array.
+     *
+     * @return array.
+     *  return array of subject and marks.
+     */
     public function getMarksTable(): array {
       return $this->result;
     }
@@ -263,6 +308,7 @@
       $data = htmlspecialchars($data);
       return $data;
     }
+
     /**
      * Function to validate user inputs.
      *
@@ -277,14 +323,14 @@
      *  return input upon validation otherwise null.
      */
     public function validateInput(string $name, string &$error, string $fieldName): string {
-      //Check for empty Name.
+      // Check for empty Name.
       if (empty($name)) {
         $error = "* $fieldName Name is required";
         return "";
       }
       else {
         $name = $this->checkInput($name);
-        //Matching Regex.
+        // Matching Regex.
         if (!preg_match(self::regexAlpha, $name)) {
           $error = "* Only letters and white space allowed";
           return "";
@@ -298,6 +344,7 @@
         }
       }
     }
+
     /**
      * Function to validate Phone Number.
      *
@@ -309,7 +356,7 @@
      * @return void.
      */
     public function validateNum(string $num, string &$error): void {
-      //Check for empty Name.
+      // Check for empty Name.
       $this->num = $this->checkInput($num);
       if (!empty ($this->num) && strlen($this->num) == 10 && preg_match(self::regexNum, $this->num)) {
         $this->num = "+91 {$this->num}";
@@ -319,6 +366,7 @@
        $this->numErr = "Invalid Phone number.";
       }
     }
+
     /**
      * Function to validate user email.
      *
@@ -335,7 +383,7 @@
      *  return input email upon validation otherwise null.
      */
     public function validateEmail($email, &$emailErr, &$emailSuccess, &$emailMsg): string {
-      //Check empty $email.
+      // Check empty $email.
       if (empty($email)) {
         $this->emailErr = "* Email is required";
         return "";
@@ -350,7 +398,7 @@
             $dotenv = Dotenv::createImmutable(__DIR__);
             $dotenv->load();
             $data = (new FetchApi($_ENV['API_KEY'] . $email))->callApi();
-            //Check if email deliverability is not "DELIVERABLE" and it's not a disposable email or has an invalid format.
+            // Check if email deliverability is not "DELIVERABLE" and it's not a disposable email or has an invalid format.
             if ($data['deliverability'] != "DELIVERABLE" && $data['is_disposable_email']['value'] != "false" && $data['is_valid_format']['text'] != "true") {
               // Set an error message for invalid email
               $this->emailErr = "* Invalid email.";
@@ -395,27 +443,28 @@
       }
       return $result;
     }
+
     /**
      * Function to process form data by checking form post method.
      */
     public function processForm() {
-      //Checking if the form is submitted or not.
+      // Checking if the form is submitted or not.
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $this->fName = $this->validateInput($_POST['fName'], $this->fNameErr, "First");
         $this->lName = $this->validateInput($_POST['lName'], $this->lNameErr, "Last");
         $this->email = $this->validateEmail($_POST['email'], $this->emailErr, $this->emailSuccess, $this->emailMsg);
         $this->validateNum($_POST['number'], $this->numErr);
 
-        //Checking First name and Last name is not empty to set full name and message.
+        // Checking First name and Last name is not empty to set full name and message.
         if (!empty ($this->fName) && !empty ($this->lName)) {
           $this->fullName = "$this->fName $this->lName";
           $this->message = "Hello, $this->fullName.";
         }
-        //Checking if Full name field is not filled otherwise display error.
+        // Checking if Full name field is not filled otherwise display error.
         if (!empty ($_POST['fullName'])) {
           $this->fullNameError = "* Invalid Input, You can't enter any value in Full Name.";
         }
-        //Storing Image file and uploading.
+        // Storing Image file and uploading.
         if (!empty($_FILES['image']['name'])) {
         $this->imgTempName = $_FILES['image']['tmp_name'];
         $this->imgName = $_FILES['image']['name'];
@@ -427,9 +476,10 @@
       }
     }
   }
-  //Creating formValidator object from FormValidator.
+
+  // Creating formValidator object from FormValidator.
   $formValidator = new FormValidator();
-  //Calling processForm() Method.
+  // Calling processForm() Method.
   $formValidator->processForm();
 
 ?>

@@ -6,18 +6,21 @@
    * Class to Fetch Api using guzzleHttp.
    */
   class FetchApi {
+
     /**
-     * @var string @url.
+     * @var string $url.
      *  Stores the URL of Given Json API.
      */
     public $url;
+
     /**
      * The constructor for FetchApi.
-     * @param string @url.
+     * @param string $url.
      */
     function __construct(string $url) {
       $this->url = $url;
     }
+
     /**
      * Function to call api and get data.
      */
@@ -27,4 +30,5 @@
       return json_decode($response->getBody(), TRUE);
     }
   }
+
 ?>

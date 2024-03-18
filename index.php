@@ -1,6 +1,6 @@
 <?php
-  //Including formValidator.php file.
-  require 'formValidator.php';
+  // Including formValidator.php file.
+  require 'FormValidator.php';
 ?>
 
 <!DOCTYPE html>

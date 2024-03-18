@@ -18,7 +18,9 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  *  Maximum length of input field.
  * @param const @regex.
  *  Regular expression to check input data.
+ *
  * @return boolean.
+ *  Return true if user input in correct otherwise false.
  */
 function validateInputs(inputId, errorId, fieldName, maxLength, regex) {
   var input = document.getElementById(inputId).value.trim();
@@ -47,7 +49,9 @@ function validateInputs(inputId, errorId, fieldName, maxLength, regex) {
  *  Error id of input field.
  * @param string @fieldName.
  *  Field name of input field.
- * @return boolean.
+ *
+ * @return boolean
+ *  Return true if email validated successfully otherwise false.
  */
 function validateEmail(inputId, errorId, fieldName) {
   var input = document.getElementById(inputId).value.trim();
@@ -77,7 +81,9 @@ function validateEmail(inputId, errorId, fieldName) {
  *  Maximum length of input field.
  * @param const @regex.
  *  Regular expression to check input data.
+ *
  * @return boolean.
+ *  Return true if Phone number validate successfully otherwise false.
  */
 function validateNum(inputId, errorId, fieldName, maxLength, regex) {
   var input = document.getElementById(inputId).value.trim();
@@ -96,6 +102,7 @@ function validateNum(inputId, errorId, fieldName, maxLength, regex) {
   }
   return true;
 }
+
 /**
  * Function to validate user Marks.
  *
@@ -136,7 +143,9 @@ function validateMarks (inputId, errorId) {
 
 /**
  * Validating user inputs on client side.
+ *
  * @return boolean.
+ *  Return true if all the validation are true otherwise false.
  */
 function validate() {
   var fnameValid = validateInputs("fname", "ferror", "First Name", 20, regex);
