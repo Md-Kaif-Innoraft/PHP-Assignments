@@ -1,6 +1,9 @@
 <?php
 
   require 'fetchApi.php';
+  // Include Composer's autoloader.
+  require_once './vendor/autoload.php';
+  use Dotenv\Dotenv;
   /**
    * FormValidator Class to validate form data.
    */
@@ -92,7 +95,7 @@
     private $emailSuccess;
     /**
      * @var string @email.
-     *  It stores Email id from user input.
+     *  It stores Email iduse Dotenv\Dotenv; from user input.
      */
     private $email;
     /**
@@ -344,7 +347,9 @@
             return "";
           }
           else {
-            $data = (new FetchApi('https://emailvalidation.abstractapi.com/v1/?api_key=88e808712da846bf889378a04dd4d4f0&email=' . $email))->callApi();
+            $dotenv = Dotenv::createImmutable(__DIR__);
+            $dotenv->load();
+            $data = (new FetchApi($_ENV['API_KEY'] . $email))->callApi();
             //Check if email deliverability is not "DELIVERABLE" and it's not a disposable email or has an invalid format.
             if ($data['deliverability'] != "DELIVERABLE" && $data['is_disposable_email']['value'] != "false" && $data['is_valid_format']['text'] != "true") {
               // Set an error message for invalid email
