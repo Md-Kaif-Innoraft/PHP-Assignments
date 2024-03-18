@@ -150,4 +150,3 @@ function validate() {
   var validMarks = validateMarks("sub", "serror");
   return fnameValid && lnameValid && emailValid && numberValid && validMarks;
 }
-
