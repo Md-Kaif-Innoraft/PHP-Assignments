@@ -4,10 +4,10 @@
     padding: 0;
     box-sizing: border-box;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    
+
 }
 
-  
+
 .text-center{
     text-align: center;
 }
@@ -23,7 +23,7 @@
     background-repeat: no-repeat;
     min-height: 100vh;
     color: white;
-    
+
 }
 
 /* box to contain form */
@@ -68,7 +68,7 @@ input:disabled{
     background: rgb(5, 155, 5);
     cursor: pointer;
 }
- 
+
 
 input[type="file"]{
     width: 50% ;
@@ -91,3 +91,4 @@ input[type="file"]{
 .success{
     color: green;
 }
+
