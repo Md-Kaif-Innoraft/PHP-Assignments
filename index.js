@@ -1,9 +1,9 @@
 /**
  * Regular expression for validation.
  */
-const regex = /^[a-zA-Z ]+$/;
-const numberRegex = /^[0-9]+$/;
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const REGEX = /^[a-zA-Z ]+$/;
+const NUMBERREGEX = /^[0-9]+$/;
+const EMAILREGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /**
  * Function to validate user input.
@@ -26,11 +26,11 @@ function validateInputs(inputId, errorId, fieldName, maxLength, regex) {
   var input = document.getElementById(inputId).value.trim();
   var error = document.getElementById(errorId);
   if (input == "") {
-    error.innerHTML = "* " + fieldName + " is required.<br>";
+    error.innerHTML = "* " + fieldName + " is required javaS.<br>";
     return false;
   }
   else if (!regex.test(input)) {
-    error.innerHTML = "* Invalid Input " + fieldName + ".<br><br>";
+    error.innerHTML = "* Invalid Input javaS" + fieldName + ".<br><br>";
     return false;
   }
   else if (input.length >= maxLength) {
@@ -61,7 +61,7 @@ function validateEmail(inputId, errorId, fieldName) {
     return false;
     }
     // Using email.Regex for email validation
-    else if (!emailRegex.test(input)) {
+    else if (!EMAILREGEX.test(input)) {
       error.innerHTML = "* Invalid " + fieldName + ". Please enter a valid email address.<br><br>";
       return false;
     }
@@ -148,10 +148,10 @@ function validateMarks (inputId, errorId) {
  *  Return true if all the validation are true otherwise false.
  */
 function validate() {
-  var fnameValid = validateInputs("fname", "ferror", "First Name", 20, regex);
-  var lnameValid = validateInputs("lname", "lerror", "Last Name", 20, regex);
+  var fnameValid = validateInputs("fname", "ferror", "First Name", 20, REGEX);
+  var lnameValid = validateInputs("lname", "lerror", "Last Name", 20, REGEX);
   var emailValid = validateEmail("email", "emailErr", "Email");
-  var numberValid = validateNum("number", "nerror", "Phone Number", 10, numberRegex);
+  var numberValid = validateNum("number", "nerror", "Phone Number", 10, NUMBERREGEXRegex);
   if (document.getElementById("number").value.trim().length != 10) {
     numberValid = false;
     nerror.innerHTML = "* Phone Number should contain exactly 10 characters.<br><br>";

@@ -20,7 +20,7 @@
       <h2 class="text-center">PHP Assignment 5</h2><br><br>
       <form id="form" onsubmit = "return validate()" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
         <label for="fName"><span class="error">* </span> First Name : </label> <br>
-        <input type="text" name="fName" id="fName" required maxlength="20" value="<?php echo $_POST['fName']; ?>" pattern="[a-zA-Z ]*">
+        <input type="text" name="fName" id="fName" required maxlength="20" value="<?php echo $_POST['fName']; ?>" >
         <span class="error" id="ferror"><?php echo $formValidator->getFirstNameErr(); ?> <br><br></span>
 
         <label for="lName"> <span class="error">* </span> Last Name : </label> <br>
