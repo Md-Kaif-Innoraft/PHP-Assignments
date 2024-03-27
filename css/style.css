@@ -1,0 +1,132 @@
+body{
+background: #BDB7B4;
+line-height: 1.5;
+}
+
+/* Container for the same alingment */
+.container {
+  color: white;
+  padding-top: 30px;
+}
+
+.text-center{
+text-align: center;
+}
+
+/* box to contain form */
+.box{
+margin: 0 auto;
+width: 500px;
+border-radius: 10px;
+background: #22303B;
+border: 5px solid white;
+padding: 40px;
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+form input{
+width: 100%;
+height: 20px;
+border-radius: 10px;
+border: none;
+margin: 10px 0;
+padding: 10px;
+}
+
+.error{
+color: #FF0000;
+}
+
+input:disabled{
+color: white;
+}
+
+.btn{
+padding: 10px 25px;
+border-radius: 10px;
+border: none;
+background: green ;
+color: white;
+}
+
+.btn:hover{
+background: rgb(5, 155, 5);
+cursor: pointer;
+}
+
+form input,
+textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.error {
+  color: #FF0000;
+}
+
+.success{
+  color: green;
+}
+
+input:disabled {
+  color: white;
+}
+
+.btn {
+  padding: 10px 25px;
+  border-radius: 10px;
+  border: none;
+  background: green;
+  color: white;
+}
+
+.btn:hover {
+  background: rgb(5, 155, 5);
+  cursor: pointer;
+}
+
+input[type="file"] {
+  width: 50%;
+}
+
+.img-sec {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.table {
+  border: white;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+li {
+  list-style: none;
+}
+
+li a {
+  text-decoration: none;
+  color: white;
+}
+
+.btn-ul {
+  display: flex;
+  gap: 5px;
+}
+
+.btn-logout{
+  background: red;
+  margin-top: 20px;
+}
+
+.btn-logout:hover{
+  background: rgb(211, 5, 5);
+}
