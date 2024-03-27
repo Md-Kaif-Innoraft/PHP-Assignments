@@ -1,7 +1,8 @@
 <?php
-
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 // Include FetchApi file.
-require 'FetchApi.php';
+require './Assignment5/FetchApi.php';
 
 // Include Composer's autoloader.
 require_once './vendor/autoload.php';
@@ -340,7 +341,7 @@ class FormValidator {
         $error = "* Only letters and white space allowed";
         return "";
       }
-      else if (empty ($name)) {
+      elseif (empty ($name)) {
         $error = "* Empty! Please enter valid $fieldName Name.";
         return "";
       }
@@ -379,7 +380,7 @@ class FormValidator {
    * @param string $email
    *  Email id of user from input field.
    * @param string $emailErr
-   *  MmialErr to store error message.
+   *  MialErr to store error message.
    * @param string $emailSuccess
    *  Success message upon successful email validation from input field.
    * @param string $emailMsg
@@ -439,7 +440,7 @@ class FormValidator {
       if (is_numeric($marks[0]) && !is_numeric($marks[1])) {
         $result[$marks[1]] = $marks[0];
       }
-      else if (is_numeric($marks[1]) && !is_numeric(($marks[0]))) {
+      elseif (is_numeric($marks[1]) && !is_numeric(($marks[0]))) {
         $result[$marks[0]] = $marks[1];
       }
       else {
@@ -474,7 +475,7 @@ class FormValidator {
       if (!empty($_FILES['image']['name'])) {
       $this->imgTempName = $_FILES['image']['tmp_name'];
       $this->imgName = $_FILES['image']['name'];
-      move_uploaded_file($this->getImgTempName(), "../uploads/$this->imgName");
+      move_uploaded_file($this->getImgTempName(), "./uploads/$this->imgName");
       }
       if (!empty($_POST['sub'])) {
         $this->result = $this->storeMarks($_POST['sub']);

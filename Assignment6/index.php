@@ -1,5 +1,13 @@
 <?php
-  include "./Assignment6/formpdf.php";
+
+// Checking for session is logged or not.
+if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
+header("location: ../index.php");
+exit;
+}
+
+include "./Assignment6/formpdf.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

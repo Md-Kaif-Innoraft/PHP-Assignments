@@ -148,8 +148,8 @@ function validateMarks (inputId, errorId) {
  *  Return true if all the validation are true otherwise false.
  */
 function validate() {
-  var fnameValid = validateInputs("fname", "ferror", "First Name", 20, REGEX);
-  var lnameValid = validateInputs("lname", "lerror", "Last Name", 20, REGEX);
+  var fnameValid = validateInputs("fName", "ferror", "First Name", 20, REGEX);
+  var lnameValid = validateInputs("lName", "lerror", "Last Name", 20, REGEX);
   var emailValid = validateEmail("email", "emailErr", "Email");
   var numberValid = validateNum("number", "nerror", "Phone Number", 10, NUMBERREGEXRegex);
   if (document.getElementById("number").value.trim().length != 10) {

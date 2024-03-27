@@ -1,6 +1,14 @@
 <?php
-  // Including formValidator.php file.
-  require 'FormValidator.php';
+
+// Checking for session is logged or not.
+if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
+header("location: ../index.php");
+exit;
+}
+
+// Including formValidator.php file.
+require 'FormValidator.php';
+
 ?>
 
 <!DOCTYPE html>

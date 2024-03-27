@@ -1,6 +1,14 @@
 <?php
-  // Including formValidator.php file.
-  require 'FormValidator.php';
+
+// Checking for session is logged or not.
+if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != TRUE) {
+header("location: ../index.php");
+exit;
+}
+
+// Including formValidator.php file.
+require './Assignment5/FormValidator.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -30,8 +38,8 @@
         <span class="error" id="nerror"><?php echo $formValidator->getNumErr(); ?><br> <br></span>
 
         <label for="email"><span class="error">* </span> Email : <span class="success"><?php echo $formValidator->getEmailSuccess(); ?></span></label> <br>
-        <input type="text" id="email" name="email"value="<?php echo $_POST['email']; ?>" required> <br>
-        <span class="error" id="emailErr"><?php echo $formValidator->getEmailErr(); ?> <br> <br></span>
+        <input type="text" id="email" name="email" value="<?php echo $_POST['email']; ?>" required > <br>
+        <span class="error" id="emailErr"><?php echo $formValidator->getEmailErr(); ?></span>
 
         <label for="sub">Subjects and Marks : ( Format: English|80)</label>
         <textarea required name="sub" id="sub" rows="3"></textarea>
@@ -55,7 +63,7 @@
               <?php echo $formValidator->getNumMsg(); ?><br>
               <?php echo $formValidator->getEmailMsg(); ?><br> <br>
               <?php if (!empty($formValidator->getImgName())) { ?>
-              <img src = '../uploads/<?php echo $formValidator->getImgName(); ?>' height= 250px > <br>
+              <img src = './uploads/<?php echo $formValidator->getImgName(); ?>' height= 250px > <br>
               <?php echo $formValidator->getImgName();
               }
               if (empty($formValidator->getTableErr())) { ?>
